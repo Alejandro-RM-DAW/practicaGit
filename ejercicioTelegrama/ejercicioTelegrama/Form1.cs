@@ -23,17 +23,26 @@ namespace ejercicioTelegrama
             char tipoTelegrama = ' ';
             int numPalabras = 0;
             double coste;
+
             //Leo el telegrama
             textoTelegrama = txtTelegrama.Text;
+
             // telegrama urgente?
             if (chkUrgente.Checked)
             {
                 tipoTelegrama = 'u';
             }
+            else
+            {
+                tipoTelegrama = 'o';
+            }
+
             //Obtengo el número de palabras que forma el telegrama
-            numPalabras = textoTelegrama.Length;
+            string[] palabras = textoTelegrama.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); // Evito palabras vacías por espacios extra
+            numPalabras = palabras.Length;
+
             //Si el telegrama es ordinario
-            if (tipoTelegrama == 'o')
+            if (tipoTelegrama == 'o') // Telegrama ordinario
             {
                 if (numPalabras <= 10)
                 {
@@ -41,29 +50,22 @@ namespace ejercicioTelegrama
                 }
                 else
                 {
-                    coste = 0.5 * numPalabras;
+                    coste = 2.5 + 0.5 * (numPalabras - 10); // Coste base + palabras adicionales
                 }
+                txtPrecio.Text = coste.ToString() + " euros";
             }
-            else
-            //Si el telegrama es urgente
+            if (tipoTelegrama == 'u') // Telegrama urgente
             {
-                if (tipoTelegrama == 'u')
+                if (numPalabras <= 10)
                 {
-                    if (numPalabras <= 10)
-                    {
-                        coste = 5;
-                    }
-                    else
-                    {
-                        coste = 5 + 0.75 * (numPalabras - 10);
-                    }
+                    coste = 5;
                 }
                 else
                 {
-                    coste = 0;
+                    coste = 5 + 0.75 * (numPalabras - 10); // Coste base + palabras adicionales
                 }
+                txtPrecio.Text = coste.ToString() + " euros";
             }
-            txtPrecio.Text = coste.ToString() + " euros";
         }
     }
 }
