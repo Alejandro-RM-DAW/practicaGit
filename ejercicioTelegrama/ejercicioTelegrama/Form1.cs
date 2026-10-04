@@ -44,16 +44,16 @@ namespace WindowsFormsApp1
             //Si el telegrama es ordinario
             if (tipoTelegrama == 'o')
                 if (numPalabras <= 10)
-                    coste = 2.5;										
+                    coste = 3;										
                 else													// SOLUCIONADO POR
-                    coste = 2.5 + 0.5 * (numPalabras - 10);				// USUARIO 2
+                    coste = 3 + 0.5 * (numPalabras - 10);				// USUARIO 2
             else
             //Si el telegrama es urgente
             if (tipoTelegrama == 'u')
                 if (numPalabras <= 10)
-                    coste = 5;
+                    coste = 6;
                 else
-                    coste = 5 + 0.75 * (numPalabras - 10);
+                    coste = 6 + 0.75 * (numPalabras - 10);
             else
                 coste = 0;
             txtPrecio.Text = coste.ToString() + " euros";
